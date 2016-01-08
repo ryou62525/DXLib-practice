@@ -4,6 +4,14 @@
 
 enum class EnemyCount
 {
+	ENEMY1,
+	ENEMY2,
+	ENEMY3,
+	MAX_ENEMY
+};
+
+enum class EnemyID
+{
 	ENEMY_01,
 	ENEMY_02,
 	ENEMY_03,
@@ -15,6 +23,7 @@ struct EnemyState
 	float pos_x;
 	float pos_y;
 	float speed;
+
 	bool receive_damage;
 	bool is_active;
 };
@@ -56,8 +65,6 @@ static void DrawEnemy(EnemyState enemy[], int num, int graph_handle)
 
 class Enemy
 {
-
-	//int HP;
 	int pos_x, pos_y;
 	float velocity;
 
