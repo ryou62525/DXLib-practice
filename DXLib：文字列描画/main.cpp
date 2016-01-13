@@ -9,7 +9,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmaLine
 
 	unsigned int color = GetColor(255, 255, 255);
 
-
 	//文字列描画
 	DrawString(20, 20, "こんにちは。", color);
 
@@ -19,10 +18,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmaLine
 
 	//描画した時の文字列の幅(ドット単位)を得る
 	int StrWidth, StrLen;
-	StrLen = strlen("こんにちは、　");	//文字列の長さを取得
-	StrWidth = GetDrawStringWidth("こんにちは、　", StrLen);
+	StrLen = strlen("こんにちは、　");						//文字列の長さを取得
+	StrWidth = GetDrawStringWidth("こんにちは、　", StrLen);	//描画時の文字列の幅を取得
 	DrawString(20, 60, "こんにちは、　", color);
 	DrawString(StrWidth, 60, "いい天気ですね。", color);
+	
 	
 
 	WaitKey();
