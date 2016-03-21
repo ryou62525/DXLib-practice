@@ -22,10 +22,11 @@ struct EnemyState
 {
 	float pos_x;
 	float pos_y;
-	float speed;
+	float velocity;
 
 	bool receive_damage;
 	bool is_active;
+	bool move_start;
 };
 
 static void SortEnemy(EnemyState enemy[], int num)
@@ -55,7 +56,7 @@ static void DrawEnemy(EnemyState enemy[], int num, int graph_handle)
 		if (enemy[i].is_active == TRUE)
 		{
 			DrawGraph((int)enemy[i].pos_x, (int)enemy[i].pos_y, graph_handle, FALSE);
-			enemy[i].pos_x += enemy[i].speed;
+			enemy[i].pos_x += enemy[i].velocity;
 		}
 	}
 
@@ -65,32 +66,28 @@ static void DrawEnemy(EnemyState enemy[], int num, int graph_handle)
 
 class Enemy
 {
-	int pos_x, pos_y;
-	float velocity;
 
-	bool move_start;
-	bool receive_damage;
-	bool is_active;
+	EnemyState status;
+	EnemyID enemyID;
 
 	int enemy_img;
-
 public:
 
-	Enemy(int graph_handle);
+	Enemy();
 	~Enemy();
 
 	void Update();
 	void Draw();
 	
 	void Move();
-	void setMove(float velocity) { pos_x += (int)velocity; }
+	void setMove(float velocity) { status.pos_x += (int)velocity; }
 
-	int getPosX() { return pos_x; }
-	int getPosY() { return pos_y; }
-	float getVelocity() { return velocity; }
+	int getPosX() { return status.pos_x; }
+	int getPosY() { return status.pos_y; }
+	float getVelocity() { return status.velocity; }
 	
-	bool getMoveStart() { return move_start; }
-	bool getActive() { return is_active; }
-	bool getReceiveDamage() { return receive_damage; }
+	bool getMoveStart() { return status.move_start; }
+	bool getActive() { return status.is_active; }
+	bool getReceiveDamage() { return status.receive_damage; }
 
 };

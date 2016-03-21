@@ -14,7 +14,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmaLine
 	GameManager gameManager;
 
 	int img = LoadGraph("res/shoot_ufo.png");
-	//Enemy enemy(img);
 	EnemyState enemy[] =
 	{
 		{ -50, 100, 1, FALSE, TRUE},
@@ -39,9 +38,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmaLine
 			{
 				if (enemy[i].receive_damage == TRUE)
 				{
-					enemy[i].pos_x -= 20;
+					enemy[i].pos_x -= 100;
 				}
 			}
+
+			if (isPushKey(KEY_INPUT_D))
+			{
+				if (enemy[i].receive_damage == TRUE)
+				{
+					enemy[i].is_active = false;
+				}
+			}
+
 		}
 		if (isPushKey(KEY_INPUT_ESCAPE))break;
 	}

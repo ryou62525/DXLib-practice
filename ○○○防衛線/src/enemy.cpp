@@ -1,15 +1,16 @@
 #include "enemy.h"
 
-Enemy::Enemy(int graph_handle)
+Enemy::Enemy()
 {
-	pos_x = -50, pos_y = 200;
-	velocity = 1.0f;
 
-	move_start = FALSE;
-	receive_damage = FALSE;
-	is_active = TRUE;
+	status.pos_x = -50, status.pos_y = 200;
+	status.velocity = 1.0f;
 
-	enemy_img = graph_handle;
+	status.move_start = FALSE;
+	status.receive_damage = FALSE;
+	status.is_active = TRUE;
+
+	enemy_img = LoadGraph("shoot_ufo.png");
 }
 
 Enemy::~Enemy()
@@ -20,18 +21,18 @@ Enemy::~Enemy()
 void Enemy::Update()
 {
 	Move();
-	move_start = TRUE;
+	status.move_start = TRUE;
 }
 
 void Enemy::Draw()
 {
-	DrawGraph(pos_x, pos_y, enemy_img, FALSE);
+	DrawGraph(status.pos_x, status.pos_y, enemy_img, FALSE);
 }
 
 void Enemy::Move()
 {
-	if (move_start == TRUE)
+	if (status.move_start == TRUE)
 	{
-		pos_x += (int)velocity;
+		status.pos_x += (int)status.velocity;
 	}
 }
